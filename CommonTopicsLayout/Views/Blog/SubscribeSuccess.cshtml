@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "_MyLayout";
+    ViewData["Title"] = "Success";
+}
+
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="mb-5">
+                <div class="d-inline-block p-4 rounded-circle" 
+                     style="background: rgba(80, 200, 120, 0.05); border: 1px solid var(--emerald);">
+                    <i class="bi bi-envelope-check fs-1" style="color: var(--emerald);"></i>
+                </div>
+            </div>
+
+            <h1 class="display-3 serif mb-3">Welcome to the <br><span class="fst-italic">Emerald Circle.</span></h1>
+            
+            <div class="mx-auto my-4" style="width: 50px; height: 1px; background: var(--emerald);"></div>
+
+            <p class="text-secondary lead fw-light mb-5" style="letter-spacing: 1px;">
+                Your subscription has been verified. You are now part of a curated community <br class="d-none d-md-block"> 
+                dedicated to the mastery of digital craftsmanship.
+            </p>
+
+            <div class="mt-5">
+                <a asp-controller="Blog" asp-action="Home" class="btn btn-subscribe px-5 py-3">
+                    Return to Journal
+                </a>
+            </div>
+            
+            <p class="small text-muted mt-4">A confirmation email is on its way to your inbox.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Subtle entrance animation */
+    .container {
+        animation: fadeIn 1.2s ease-out;
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

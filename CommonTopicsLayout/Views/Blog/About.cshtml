@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Our Story";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<style>
+    /* Typography & Hero */
+    .about-hero-text {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.1;
+    }
+
+    /* Values Section */
+    .stat-box {
+        border-right: 1px solid rgba(80, 200, 120, 0.2);
+    }
+
+    @@media (max-width: 768px) {
+        .stat-box { border-right: none; border-bottom: 1px solid rgba(80, 200, 120, 0.2); padding-bottom: 2rem; }
+    }
+
+    /* Curator Cards */
+    .team-card {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: grayscale(100%);
+        position: relative;
+        cursor: pointer;
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        filter: grayscale(0%);
+        border-color: var(--emerald) !important;
+    }
+
+    .quote-mark {
+        font-size: 5rem;
+        color: var(--emerald);
+        opacity: 0.3;
+        line-height: 0;
+        display: inline-block;
+        transform: translateY(1.5rem);
+    }
+
+    .article-content p {
+        color: #cbd5e1; /* Higher contrast than text-secondary */
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <span class="text-emerald text-uppercase tracking-widest small d-block mb-3" style="color: var(--emerald);">Manifesto</span>
+                <h1 class="about-hero-text serif mb-4">Crafting digital <br /><span class="fst-italic text-emerald" style="color: var(--emerald);">longevity.</span></h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="lead fw-light text-white-50">
+                    In an era of disposable content and rapid-fire updates, Emerald Insights stands as a sanctuary for deep thought and architectural excellence.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 my-5" style="background: rgba(11, 110, 79, 0.05);">
+    <div class="container py-5">
+        <div class="row g-4 text-center">
+            <div class="col-md-4 stat-box">
+                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">01.</h2>
+                <h5 class="text-uppercase tracking-widest small mt-3">Minimalism</h5>
+                <p class="small px-4 mt-2 text-white-50">Reducing complexity to reveal the core essence of digital design.</p>
+            </div>
+            <div class="col-md-4 stat-box">
+                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">02.</h2>
+                <h5 class="text-uppercase tracking-widest small mt-3">Integrity</h5>
+                <p class="small px-4 mt-2 text-white-50">Upholding the highest standards of code and editorial ethics.</p>
+            </div>
+            <div class="col-md-4 stat-box">
+                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">03.</h2>
+                <h5 class="text-uppercase tracking-widest small mt-3">Curation</h5>
+                <p class="small px-4 mt-2 text-white-50">Selecting only the most impactful insights for our circle.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-9">
+                <div class="mb-5">
+                    <span class="quote-mark">“</span>
+                    <h2 class="serif display-6 px-4 d-inline text-white">We believe the web should be as enduring and beautiful as a printed book.</h2>
+                    <span class="quote-mark">”</span>
+                </div>
+                <div class="article-content fw-light mx-auto" style="max-width: 700px;">
+                    <p>Founded in 2024, Emerald Insights was born out of a frustration with the "noise" of modern tech journalism. We realized that while information was plentiful, true insight was becoming a luxury.</p>
+                    <p>Our team consists of designers, philosophers, and engineers who work at the intersection of aesthetic beauty and functional perfection.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 mb-5">
+    <div class="container">
+        <h3 class="serif mb-5 text-center text-white">The Curators</h3>
+        <div class="row g-4">
+            
+            <div class="col-6 col-lg-3 text-center">
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(80, 200, 120, 0.3);">
+                    <img src="~/images/SHREYASH!.jpeg" alt="Shreyash Sundechamutha" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                </div>
+                <h6 class="mb-0 text-white fw-bold">Shreyash Sundechamutha</h6>
+                <span class="small text-emerald text-uppercase tracking-tighter" style="color: var(--emerald); font-size: 0.65rem;">Founder & Director</span>
+            </div>
+
+            <div class="col-6 col-lg-3 text-center">
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="~/images/prem.jpeg" alt="Prem Gaikwad" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                </div>
+                <h6 class="mb-0 text-white">Prem Gaikwad</h6>
+                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Editor in Chief</span>
+            </div>
+
+            <div class="col-6 col-lg-3 text-center">
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="~/images/Pratik.jpeg" alt="Pratik Khetre" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                </div>
+                <h6 class="mb-0 text-white">Pratik Khetre</h6>
+                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Design Lead</span>
+            </div>
+
+            <div class="col-6 col-lg-3 text-center">
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="~/images/Aditya.jpeg" alt="Aditya Govekar" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                </div>
+                <h6 class="mb-0 text-white">Aditya Govekar</h6>
+                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Chief Architect</span>
+            </div>
+
+        </div>
+    </div>
+</section>

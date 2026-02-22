@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Emerald Insights - Publish Your Passions";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section class="py-5 mt-5">
+    <div class="container text-center">
+        <h1 class="display-1 serif text-white mb-4">
+            Publish your passions, <br/> 
+            <span class="fst-italic" style="color:var(--emerald)">your way.</span>
+        </h1>
+        <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 650px;">
+            The ultimate canvas for digital craftsmen. Create a unique and beautiful blog today and join the circle of elite curators.
+        </p>
+        
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Account" asp-action="Register" 
+               class="btn py-3 px-5 fw-bold text-uppercase tracking-widest" 
+               style="background-color: var(--emerald); color: var(--deep-green); border: none;">
+                Get Started
+            </a>
+            <a asp-controller="Account" asp-action="Login" 
+               class="btn btn-outline-light py-3 px-5 fw-bold text-uppercase tracking-widest rounded-0">
+                Sign In
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="container mt-5 pt-5">
+    <div class="row text-center text-white-50">
+        <div class="col-md-4 mb-4">
+            <h5 class="text-emerald serif">Unique Design</h5>
+            <p class="small">Tailored layouts for the modern writer.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5 class="text-emerald serif">Secure Storage</h5>
+            <p class="small">Your insights, protected by Emerald encryption.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <h5 class="text-emerald serif">Global Reach</h5>
+            <p class="small">Share your voice with a community of craftsmen.</p>
+        </div>
+    </div>
+</div>

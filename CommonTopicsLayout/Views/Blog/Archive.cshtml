@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Archive";
+    // Ensure this path matches your layout file name exactly
+    Layout = "~/Views/Shared/_MyLayout.cshtml"; 
+}
+
+<style>
+    /* Prevent text from clashing with the sidebar during scroll */
+    .archive-list-item {
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .archive-list-item:hover {
+        background-color: rgba(80, 200, 120, 0.05) !important;
+        padding-left: 15px;
+    }
+
+    .archive-list-item:hover .bi-arrow-right {
+        transform: translateX(5px);
+        color: var(--emerald) !important;
+    }
+
+    /* Category link hover effect */
+    .category-link {
+        transition: color 0.3s ease;
+        color: rgba(240, 253, 244, 0.6); /* --text-light with opacity */
+    }
+
+    .category-link:hover {
+        color: var(--emerald) !important;
+    }
+</style>
+
+<div class="container py-5 mt-4">
+    <div class="row">
+        <div class="col-md-3 mb-5">
+            <div class="sticky-top" style="top: 110px; z-index: 10;">
+                <h6 class="text-emerald text-uppercase tracking-widest mb-4" style="color: var(--emerald); font-size: 0.75rem; font-weight: 600;">
+                    Filter by Topic
+                </h6>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Design Theory (12)</a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Digital Craft (08)</a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Philosophy (04)</a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Architecture (06)</a>
+                    </li>
+                </ul>
+                
+                <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+                
+                <h6 class="text-emerald text-uppercase tracking-widest mb-3" style="color: var(--emerald); font-size: 0.75rem; font-weight: 600;">
+                    Search
+                </h6>
+                <div class="input-group">
+                    <input type="text" class="form-control bg-transparent border-secondary text-white rounded-0 small" placeholder="Keywords...">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9 ps-md-5">
+            <h1 class="display-3 serif mb-5">History.</h1>
+
+            @foreach (var year in new[] { "2026", "2025" })
+            {
+                <div class="mb-5">
+                    <h2 class="serif text-muted mb-4 pt-2 border-bottom border-secondary pb-2" style="opacity: 0.5;">@year</h2>
+                    
+                    <div class="list-group list-group-flush bg-transparent">
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <a href="#" class="list-group-item archive-list-item bg-transparent text-white py-4 d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <span class="small text-emerald d-block mb-1" style="color: var(--emerald); letter-spacing: 1px;">MARCH 12</span>
+                                    <span class="h4 serif fw-light">Refining the Digital Canvas: A Study in Modern Space</span>
+                                </div>
+                                <i class="bi bi-arrow-right fs-4 transition"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

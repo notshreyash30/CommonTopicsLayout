@@ -1,0 +1,16 @@
+﻿@model CommonTopicsLayout.Models.SubscribeModel 
+@* ^ Use your actual project namespace here ^ *@
+
+@{
+    Layout = "_MyLayout";
+    ViewData["Title"] = "Subscribe";
+}
+
+<form asp-action="Subscribe" method="post">
+    <div class="mb-4">
+        @* This line fails if @model is missing or if you use ViewBag here *@
+        <input asp-for="Email" class="form-control bg-transparent text-white" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+</form>
