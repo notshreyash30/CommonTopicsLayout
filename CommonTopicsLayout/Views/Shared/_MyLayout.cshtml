@@ -1,125 +1,77 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Emerald Insights</title>
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --emerald: #50C878;
             --deep-green: #051612;
-            --glass-border: rgba(80, 200, 120, 0.15);
         }
 
         body {
             background-color: var(--deep-green);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            color: #fff;
             margin-top: 90px;
         }
 
-        .serif { font-family: 'Playfair Display', serif; }
-        .text-emerald { color: var(--emerald) !important; }
+        .text-emerald {
+            color: var(--emerald) !important;
+        }
 
         .navbar {
             background: rgba(5, 22, 18, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(80, 200, 120, 0.1);
         }
 
         .nav-link {
-            color: rgba(255,255,255,0.7) !important;
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 2px;
-            font-weight: 600;
-            transition: 0.3s;
-            margin: 0 10px;
+            color: rgba(255,255,255,0.7) !important;
         }
 
-        .nav-link:hover {
-            color: var(--emerald) !important;
-        }
+            .nav-link:hover {
+                color: var(--emerald) !important;
+            }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand serif text-emerald fs-4" asp-controller="Blog" asp-action="Index">EMERALD</a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+                <a class="navbar-brand text-emerald fw-bold" asp-controller="Blog" asp-action="Index">EMERALD</a>
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Blog" asp-action="Home">Home</a>
-                        </li>
-
-                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="Index">Home</a></li>
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-emerald" asp-controller="Blog" asp-action="Articles">Articles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-emerald" asp-controller="Blog" asp-action="Archive">Archive</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="Home">Feed</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="Archive">Archive</a></li>
                         }
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Blog" asp-action="About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Blog" asp-action="Contact">Contact</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="About">About</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Blog" asp-action="Contact">Contact</a></li>
                     </ul>
-
-                    <ul class="navbar-nav align-items-center">
-                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item me-3">
-                                <span class="small text-white-50">Hi, @User.Identity.Name</span>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-danger p-0" asp-controller="Account" asp-action="Logout" style="font-size: 0.7rem;">Sign Out</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link text-emerald" asp-controller="Blog" asp-action="Profile">Hi, @User.Identity.Name</a></li>
+                            <li class="nav-item"><a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">Sign Out</a></li>
                         }
                         else
                         {
-                            @* Only Login remains for guest users *@
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login">Login</a></li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <main role="main">
-        <div class="container">
-            @RenderBody()
-        </div>
-    </main>
-
-    <footer class="py-4 border-top border-secondary mt-5 opacity-50 text-center small text-white-50">
-        &copy; 2026 - Emerald Insights - engineered by notshreyxsh
-    </footer>
-
+    <main class="container">@RenderBody()</main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

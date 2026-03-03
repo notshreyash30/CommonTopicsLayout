@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CommonTopicsLayout.Models.Article>
+@{
+    string name = ViewBag.Username;
+    string bio = ViewBag.Bio;
+    string pfp = ViewBag.PFP;
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container py-5 mt-4">
+    <div class="row g-5 justify-content-center">
+        <div class="col-lg-4">
+            <div class="profile-sidebar p-4 text-center sticky-top" style="top: 110px;">
+
+                <div class="profile-avatar-lg mb-3 mx-auto overflow-hidden">
+                    @if (!string.IsNullOrEmpty(pfp))
+                    {
+                        <img src="@pfp" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        @name[0]
+                    }
+                </div>
+
+                <h2 class="serif text-white h3 mb-1">@name</h2>
+                <span class="text-emerald x-small fw-bold tracking-widest d-block mb-4">Member</span>
+
+                <p class="text-white-50 small mb-4 lh-lg italic">"@bio"</p>
+
+                @if (name == User.Identity.Name)
+                {
+                    <a asp-action="Settings" class="btn btn-emerald-action w-100">Edit Settings</a>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <h5 class="text-emerald x-small fw-bold mb-4 tracking-widest">Recent Contributions</h5>
+            @foreach (var post in Model)
+            {
+                <div class="profile-post-card mb-3 p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="serif text-white h5 mb-0">@post.Title</h4>
+                        <a asp-action="Details" asp-route-id="@post.Id" class="text-emerald text-decoration-none small fw-bold">Read &rarr;</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-avatar-lg {
+        width: 100px;
+        height: 100px;
+        background: var(--emerald);
+        color: #0d1b13;
+        font-size: 3rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    }
+
+    .profile-sidebar {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 3px solid var(--emerald);
+    }
+
+    .profile-post-card {
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+    }
+
+        .profile-post-card:hover {
+            border-color: var(--emerald);
+            transform: translateX(5px);
+        }
+</style>

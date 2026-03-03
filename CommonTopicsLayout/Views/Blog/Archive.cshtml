@@ -1,92 +1,141 @@
-﻿@{
+﻿@model IEnumerable<CommonTopicsLayout.Models.Article>
+@{
     ViewData["Title"] = "Archive";
-    // Ensure this path matches your layout file name exactly
-    Layout = "~/Views/Shared/_MyLayout.cshtml"; 
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+
+    // 1. Group the articles by Year from your actual data
+    var yearGroups = Model.GroupBy(a => a.PublishedDate.Year)
+                          .OrderByDescending(g => g.Key);
+
+    // 2. Get the list of topics and how many posts are in each
+    var topicStats = Model.GroupBy(a => a.Category)
+                          .Select(g => new { Name = g.Key, Count = g.Count() })
+                          .OrderByDescending(c => c.Count);
 }
 
 <style>
-    /* Prevent text from clashing with the sidebar during scroll */
-    .archive-list-item {
+    /* Simple variables for colors */
+    :root {
+        --emerald: #50c878;
+        --soft-white: rgba(255, 255, 255, 0.6);
+    }
+
+    .serif {
+        font-family: 'Playfair Display', serif;
+    }
+
+    /* Makes the list items look smooth when you hover */
+    .archive-item {
         transition: all 0.3s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        text-decoration: none;
+        display: block;
+        padding: 25px 0;
     }
 
-    .archive-list-item:hover {
-        background-color: rgba(80, 200, 120, 0.05) !important;
-        padding-left: 15px;
+        .archive-item:hover {
+            background-color: rgba(80, 200, 120, 0.05) !important;
+            padding-left: 15px !important;
+        }
+
+            .archive-item:hover .arrow-icon {
+                transform: translateX(8px);
+                color: var(--emerald) !important;
+            }
+
+    /* Simple links in the sidebar */
+    .sidebar-link {
+        transition: 0.3s;
+        color: var(--soft-white);
+        font-size: 0.85rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
     }
 
-    .archive-list-item:hover .bi-arrow-right {
-        transform: translateX(5px);
-        color: var(--emerald) !important;
-    }
+        .sidebar-link:hover {
+            color: var(--emerald) !important;
+        }
 
-    /* Category link hover effect */
-    .category-link {
-        transition: color 0.3s ease;
-        color: rgba(240, 253, 244, 0.6); /* --text-light with opacity */
-    }
-
-    .category-link:hover {
-        color: var(--emerald) !important;
+    /* Big faint year numbers in the background */
+    .bg-year {
+        font-size: 4rem;
+        opacity: 0.05;
+        font-weight: 800;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
     }
 </style>
 
 <div class="container py-5 mt-4">
     <div class="row">
-        <div class="col-md-3 mb-5">
-            <div class="sticky-top" style="top: 110px; z-index: 10;">
-                <h6 class="text-emerald text-uppercase tracking-widest mb-4" style="color: var(--emerald); font-size: 0.75rem; font-weight: 600;">
-                    Filter by Topic
+
+        <div class="col-lg-3 mb-5">
+            <div class="sticky-top" style="top: 100px;">
+                <h6 class="text-emerald text-uppercase fw-bold mb-4" style="letter-spacing: 1px; font-size: 0.8rem;">
+                    Browse by Topic
                 </h6>
-                <ul class="list-unstyled">
-                    <li class="mb-3">
-                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Design Theory (12)</a>
-                    </li>
-                    <li class="mb-3">
-                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Digital Craft (08)</a>
-                    </li>
-                    <li class="mb-3">
-                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Philosophy (04)</a>
-                    </li>
-                    <li class="mb-3">
-                        <a href="#" class="text-decoration-none category-link small uppercase tracking-wider">Architecture (06)</a>
-                    </li>
-                </ul>
-                
+                <nav>
+                    <ul class="list-unstyled">
+                        @foreach (var topic in topicStats)
+                        {
+                            <li>
+                                <a href="@Url.Action("Archive", new { category = topic.Name })" class="text-decoration-none sidebar-link">
+                                    <span>@topic.Name</span>
+                                    <span class="opacity-50 small">(@topic.Count)</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
                 <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-                
-                <h6 class="text-emerald text-uppercase tracking-widest mb-3" style="color: var(--emerald); font-size: 0.75rem; font-weight: 600;">
-                    Search
+
+                <h6 class="text-emerald text-uppercase fw-bold mb-3" style="letter-spacing: 1px; font-size: 0.8rem;">
+                    Find a Post
                 </h6>
-                <div class="input-group">
-                    <input type="text" class="form-control bg-transparent border-secondary text-white rounded-0 small" placeholder="Keywords...">
-                </div>
+                <form method="get" asp-action="Archive">
+                    <input type="text" name="search" class="form-control bg-transparent border-secondary text-white rounded-0 shadow-none" placeholder="Type here...">
+                </form>
             </div>
         </div>
 
-        <div class="col-md-9 ps-md-5">
-            <h1 class="display-3 serif mb-5">History.</h1>
+        <div class="col-lg-9 ps-lg-5">
+            <h1 class="display-3 serif text-white mb-5">Archive.</h1>
 
-            @foreach (var year in new[] { "2026", "2025" })
+            @if (!Model.Any())
             {
-                <div class="mb-5">
-                    <h2 class="serif text-muted mb-4 pt-2 border-bottom border-secondary pb-2" style="opacity: 0.5;">@year</h2>
-                    
+                <div class="py-5 text-center border border-secondary border-dashed">
+                    <p class="text-muted">No posts found yet.</p>
+                </div>
+            }
+
+            @foreach (var yearSection in yearGroups)
+            {
+                <div class="position-relative mb-5">
+                    <div class="bg-year serif">@yearSection.Key</div>
+                    <h2 class="serif h4 text-white-50 mb-4 border-bottom border-secondary pb-2">@yearSection.Key</h2>
+
                     <div class="list-group list-group-flush bg-transparent">
-                        @for (int i = 0; i < 3; i++)
+                        @foreach (var article in yearSection.OrderByDescending(a => a.PublishedDate))
                         {
-                            <a href="#" class="list-group-item archive-list-item bg-transparent text-white py-4 d-flex justify-content-between align-items-center px-0">
+                            <a asp-action="Details" asp-route-id="@article.Id" class="list-group-item archive-item bg-transparent text-white d-flex justify-content-between align-items-center px-0">
                                 <div>
-                                    <span class="small text-emerald d-block mb-1" style="color: var(--emerald); letter-spacing: 1px;">MARCH 12</span>
-                                    <span class="h4 serif fw-light">Refining the Digital Canvas: A Study in Modern Space</span>
+                                    <span class="text-emerald fw-bold small text-uppercase" style="letter-spacing: 1px;">
+                                        @article.PublishedDate.ToString("MMMM dd")
+                                    </span>
+                                    <h3 class="h4 serif mt-1 mb-1">@article.Title</h3>
+                                    <span class="text-muted small">Topic: @article.Category — Posted by @article.AuthorName</span>
                                 </div>
-                                <i class="bi bi-arrow-right fs-4 transition"></i>
+                                <i class="bi bi-arrow-right fs-4 arrow-icon text-white-50"></i>
                             </a>
                         }
                     </div>
                 </div>
             }
         </div>
+
     </div>
 </div>

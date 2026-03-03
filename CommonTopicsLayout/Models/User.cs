@@ -10,9 +10,13 @@ namespace CommonTopicsLayout.Models
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
 
-        // Password Reset Fields (Must be Nullable ?)
+        // Password Reset Fields
         public string? ResetToken { get; set; }
         public DateTime? ResetTokenExpiry { get; set; }
         public DateTime? CreatedAt { get; set; }
+
+        // --- NEW FIELDS FOR PROFILE ---
+        public string? Bio { get; set; }
+        public string? ProfilePicturePath { get; set; }
     }
 }

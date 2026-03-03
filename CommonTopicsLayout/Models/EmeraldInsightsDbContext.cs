@@ -1,45 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using CommonTopicsLayout.Models;
 
-namespace CommonTopicsLayout.Models;
-
-public partial class EmeraldInsightsDbContext : DbContext
+namespace CommonTopicsLayout.Models
 {
-    public EmeraldInsightsDbContext() { }
-
-    public EmeraldInsightsDbContext(DbContextOptions<EmeraldInsightsDbContext> options)
-        : base(options) { }
-
-    public virtual DbSet<User> Users { get; set; }
-
-    // Added for the Articles system
-    public virtual DbSet<Article> Articles { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public partial class EmeraldInsightsDbContext : DbContext
     {
-        modelBuilder.Entity<User>(entity =>
+        public EmeraldInsightsDbContext() { }
+
+        public EmeraldInsightsDbContext(DbContextOptions<EmeraldInsightsDbContext> options)
+            : base(options) { }
+
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<ContactMessage> ContactMessages { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC0795181855");
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534E85CF63B").IsUnique();
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__Users__3214EC0795181855");
+                entity.HasIndex(e => e.Email).IsUnique();
+                entity.Property(e => e.Bio).IsRequired(false);
+                entity.Property(e => e.ProfilePicturePath).IsRequired(false);
+            });
 
-            entity.Property(e => e.Email).HasMaxLength(255);
-            entity.Property(e => e.FullName).HasMaxLength(100);
-            entity.Property(e => e.Password).HasMaxLength(255);
+            modelBuilder.Entity<Article>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.PublishedDate).HasDefaultValueSql("(getdate())");
+            });
 
-            entity.Property(e => e.ResetToken).IsRequired(false);
-            entity.Property(e => e.ResetTokenExpiry).HasColumnType("datetime").IsRequired(false);
-        });
+            modelBuilder.Entity<ContactMessage>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.SentAt).HasDefaultValueSql("(getdate())");
+            });
 
-        modelBuilder.Entity<Article>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-            entity.Property(e => e.Title).IsRequired().HasMaxLength(200);
-            entity.Property(e => e.PublishedDate).HasDefaultValueSql("(getdate())");
-        });
+            OnModelCreatingPartial(modelBuilder);
+        }
 
-        OnModelCreatingPartial(modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

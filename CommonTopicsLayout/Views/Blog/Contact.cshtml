@@ -1,27 +1,26 @@
-﻿@{
+﻿@model CommonTopicsLayout.Models.ContactMessage
+@{
     ViewData["Title"] = "Contact Us";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
 <style>
-    /* Custom Input Styling */
     .contact-input {
         background: transparent !important;
         border: none !important;
         border-bottom: 1px solid rgba(80, 200, 120, 0.3) !important;
         border-radius: 0 !important;
-        color: #f0fdf4 !important; /* var(--text-light) */
+        color: #f0fdf4 !important;
         padding: 1.2rem 0.5rem !important;
         transition: all 0.4s ease !important;
     }
 
-    .contact-input:focus {
-        border-bottom-color: var(--emerald) !important;
-        background: rgba(80, 200, 120, 0.02) !important;
-        box-shadow: none !important;
-    }
+        .contact-input:focus {
+            border-bottom-color: var(--emerald) !important;
+            background: rgba(80, 200, 120, 0.02) !important;
+            box-shadow: none !important;
+        }
 
-    /* Labels */
     .contact-label {
         font-size: 0.7rem;
         text-transform: uppercase;
@@ -31,58 +30,65 @@
         margin-bottom: 0;
     }
 
-    /* Link Hover */
     .contact-link {
         color: #f0fdf4;
         text-decoration: none;
         transition: 0.3s;
     }
 
-    .contact-link:hover {
-        color: var(--emerald);
-    }
+        .contact-link:hover {
+            color: var(--emerald);
+        }
 
-    /* Sidebar fix */
     .contact-sidebar {
         border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     @@media (max-width: 991px) {
-        .contact-sidebar {
-            border-left: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 3rem;
-            margin-top: 3rem;
-        }
+        .contact-sidebar
+
+    {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 3rem;
+        margin-top: 3rem;
+    }
+
     }
 </style>
 
 <div class="container py-5 mt-5">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success bg-emerald text-dark border-0 rounded-0 mb-5 fade show">
+            <strong>Success:</strong> @TempData["SuccessMessage"]
+        </div>
+    }
+
     <div class="row g-5">
         <div class="col-lg-7">
-            <span class="text-emerald text-uppercase tracking-widest small d-block mb-3" style="color: var(--emerald);">Get in Touch</span>
+            <span class="text-emerald text-uppercase tracking-widest small d-block mb-3">Get in Touch</span>
             <h1 class="display-3 serif mb-5">Let’s Start a <span class="fst-italic">Dialogue.</span></h1>
 
-            <form action="#" method="post">
+            <form asp-action="Contact" method="post">
                 <div class="row g-4">
                     <div class="col-md-6">
                         <label class="contact-label">Your Name</label>
-                        <input type="text" class="form-control contact-input" placeholder="Enter name" required>
+                        <input type="text" name="name" class="form-control contact-input" placeholder="Enter name" required>
                     </div>
                     <div class="col-md-6">
                         <label class="contact-label">Email Address</label>
-                        <input type="email" class="form-control contact-input" placeholder="email@example.com" required>
+                        <input type="email" name="email" class="form-control contact-input" placeholder="email@example.com" required>
                     </div>
                     <div class="col-12">
                         <label class="contact-label">Subject</label>
-                        <input type="text" class="form-control contact-input" placeholder="How can we help?" required>
+                        <input type="text" name="subject" class="form-control contact-input" placeholder="How can we help?" required>
                     </div>
                     <div class="col-12">
                         <label class="contact-label">Message</label>
-                        <textarea class="form-control contact-input" rows="4" placeholder="Your inquiry..." required></textarea>
+                        <textarea name="message" class="form-control contact-input" rows="4" placeholder="Your inquiry..." required></textarea>
                     </div>
                     <div class="col-12 mt-5">
-                        <button type="submit" class="btn btn-subscribe px-5 py-3 w-100 fw-bold">
+                        <button type="submit" class="btn px-5 py-3 w-100 fw-bold" style="background: var(--emerald); color: var(--deep-green); border:none;">
                             Submit Inquiry
                         </button>
                     </div>
@@ -91,33 +97,15 @@
         </div>
 
         <div class="col-lg-5 ps-lg-5 contact-sidebar">
-            <div class="mb-5">
-                <h4 class="serif mb-4">Our Studio</h4>
-                <p class="text-white-50 lh-lg fw-light">
-                    1200 Emerald Tower, Suite 400<br />
-                    Upper East Side, New York<br />
-                    NY 10021, United States
-                </p>
+            <h4 class="serif mb-4">Direct Lines</h4>
+            <div class="mb-3">
+                <span class="contact-label d-block">General Inquiries</span>
+                <a href="mailto:itsshreyash19@gmail.com" class="contact-link">itsshreyash19@gmail.com</a>
             </div>
-
-            <div class="mb-5">
-                <h4 class="serif mb-4">Direct Lines</h4>
-                <div class="mb-3">
-                    <span class="contact-label d-block">Editorial submissions</span>
-                    <a href="mailto:editor@emerald.com" class="contact-link">Shreyashsundechamutha66@gmail.com</a>
-                </div>
-                <div>
-                    <span class="contact-label d-block">General Inquiries</span>
-                    <a href="mailto:hello@emerald.com" class="contact-link">itsshreyash19@gmail.com</a>
-                </div>
-            </div>
-
             <div class="p-4 mt-5" style="background: rgba(80, 200, 120, 0.05); border: 1px solid rgba(80, 200, 120, 0.2);">
-                <p class="small mb-0" style="color: #cbd5e1; font-style: italic; line-height: 1.6;">
-                    <strong class="text-emerald d-block mb-1" style="color: var(--emerald); font-style: normal; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px;">
-                        Response Protocol
-                    </strong>
-                    We respect the pace of high-end craftsmanship. Please allow 24–48 hours for a curated response from our team.
+                <p class="small mb-0 italic" style="color: #cbd5e1;">
+                    <strong class="text-emerald d-block mb-1 uppercase small">Response Protocol</strong>
+                    We respect the pace of high-end craftsmanship. Please allow 24–48 hours for a curated response.
                 </p>
             </div>
         </div>
