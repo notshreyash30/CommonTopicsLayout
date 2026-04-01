@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonTopicsLayout.Models.Article>
+@model IEnumerable<CommonTopicsLayout.Models.Article>
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -10,7 +10,7 @@
             <header class="d-flex justify-content-between align-items-end mb-5">
                 <div>
                     <span class="text-emerald text-uppercase tracking-widest small d-block mb-1" style="letter-spacing: 0.3rem;">Member Area</span>
-                    <h2 class="serif display-6 text-white mb-0">Insight Feed</h2>
+                    <h2 class="serif display-6 mb-0" style="color: var(--primary-dark);">Insight Feed</h2>
                 </div>
 
                 <a asp-action="Create" class="btn btn-emerald-action">
@@ -22,7 +22,7 @@
             {
                 <div class="empty-state-box p-5 text-center">
                     <i class="bi bi-wind display-1 text-secondary opacity-25 mb-3"></i>
-                    <p class="text-white-50">The feed is currently empty.</p>
+                    <p style="color: var(--mid-tone-2);">The feed is currently empty.</p>
                     <a asp-action="Create" class="text-emerald text-decoration-none fw-bold">Start the conversation &rarr;</a>
                 </div>
             }
@@ -35,21 +35,21 @@
                             <div class="p-4">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="badge border border-emerald text-emerald px-3 py-2">@post.Category</span>
-                                    <span class="text-white-50 small font-monospace">@post.PublishedDate.ToString("MMM dd, yyyy")</span>
+                                    <span class="small font-monospace" style="color: var(--mid-tone-2);">@post.PublishedDate?.ToString("MMM dd, yyyy")</span>
                                 </div>
 
                                 @* Link Title to Details Page *@
                                 <a asp-action="Details" asp-route-id="@post.Id" class="text-decoration-none">
-                                    <h4 class="serif text-white mb-2 hover-emerald transition-3">@post.Title</h4>
+                                    <h4 class="serif mb-2 hover-emerald transition-3" style="color: var(--primary-dark);">@post.Title</h4>
                                 </a>
 
-                                <p class="text-white-50 small lh-base">@post.Summary</p>
+                                <p class="small lh-base" style="color: var(--mid-tone-2);">@post.Summary</p>
 
                                 <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary opacity-75">
                                     @* Link Author Name to Profile Page *@
                                     <span class="small text-muted">
                                         By
-                                        <a asp-action="Profile" asp-route-username="@post.AuthorName" class="text-white text-decoration-none fw-bold hover-emerald">
+                                        <a asp-action="Profile" asp-route-username="@post.AuthorName" class="text-decoration-none fw-bold hover-emerald" style="color: var(--primary-dark);">
                                             @post.AuthorName
                                         </a>
                                     </span>
@@ -73,21 +73,21 @@
                     <div class="d-flex align-items-center mb-4">
                         <div class="avatar-sm me-3">@User.Identity.Name[0]</div>
                         <div>
-                            <span class="d-block text-white-50 small">Member</span>
-                            <span class="text-white fw-bold">@User.Identity.Name</span>
+                            <span class="d-block small" style="color: var(--mid-tone-2);">Member</span>
+                            <span class="fw-bold" style="color: var(--primary-dark);">@User.Identity.Name</span>
                         </div>
                     </div>
 
                     <div class="d-grid gap-2">
                         @* Link to the user's own profile *@
-                        <a asp-action="Profile" asp-route-username="@User.Identity.Name" class="btn btn-sm btn-outline-light rounded-0 text-uppercase tracking-wider">My Profile</a>
+                        <a asp-action="Profile" asp-route-username="@User.Identity.Name" class="btn btn-sm rounded-0 text-uppercase tracking-wider" style="border-color: var(--mid-tone-3); color: var(--primary-dark);">My Profile</a>
                         <a asp-action="Archive" class="btn btn-sm btn-outline-emerald rounded-0 text-uppercase tracking-wider">Browse History</a>
                         <a asp-controller="Account" asp-action="Logout" class="btn btn-sm btn-outline-danger rounded-0 text-uppercase tracking-wider mt-2">Log Out</a>
                     </div>
                 </div>
 
-                <div class="p-3 border-start border-emerald opacity-50">
-                    <p class="small text-white-50 italic mb-0">"Digital archives are the fingerprints of our progress."</p>
+                <div class="p-3 border-start border-secondary opacity-75" style="border-color: var(--mid-tone-3) !important;">
+                    <p class="small italic mb-0" style="color: var(--mid-tone-2);">"Digital archives are the fingerprints of our progress."</p>
                 </div>
             </aside>
         </div>
@@ -104,28 +104,28 @@
         }
 
     .dashboard-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 196, 170, 0.08);
+        border: 1px solid rgba(118, 70, 56, 0.2);
         border-left: 4px solid var(--emerald);
         transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
         .dashboard-card:hover {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 196, 170, 0.15);
             transform: translateX(8px);
             border-color: var(--emerald);
         }
 
     .sidebar-panel {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 196, 170, 0.1);
+        border: 1px solid rgba(118, 70, 56, 0.2);
     }
 
     .avatar-sm {
         width: 40px;
         height: 40px;
-        background: var(--emerald);
-        color: #0d1b13;
+        background: var(--mid-tone-3);
+        color: #fffaf8;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -134,13 +134,13 @@
     }
 
     .empty-state-box {
-        background: rgba(255, 255, 255, 0.01);
-        border: 1px dashed rgba(80, 200, 120, 0.2);
+        background: rgba(255, 196, 170, 0.15);
+        border: 1px dashed rgba(118, 70, 56, 0.3);
     }
 
     .btn-emerald-action {
         background-color: var(--emerald);
-        color: #0d1b13;
+        color: #fffaf8;
         border-radius: 0;
         padding: 12px 25px;
         font-weight: 700;
@@ -151,7 +151,7 @@
     }
 
         .btn-emerald-action:hover {
-            background-color: white;
+            background-color: var(--light-accent);
             transform: translateY(-2px);
         }
 </style>

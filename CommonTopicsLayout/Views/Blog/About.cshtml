@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Our Story";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
@@ -12,11 +12,15 @@
 
     /* Values Section */
     .stat-box {
-        border-right: 1px solid rgba(80, 200, 120, 0.2);
+        border-right: 1px solid rgba(118, 70, 56, 0.25);
     }
 
     @@media (max-width: 768px) {
-        .stat-box { border-right: none; border-bottom: 1px solid rgba(80, 200, 120, 0.2); padding-bottom: 2rem; }
+        .stat-box {
+            border-right: none;
+            border-bottom: 1px solid rgba(118, 70, 56, 0.25);
+            padding-bottom: 2rem;
+        }
     }
 
     /* Curator Cards */
@@ -27,11 +31,11 @@
         cursor: pointer;
     }
 
-    .team-card:hover {
-        transform: translateY(-10px);
-        filter: grayscale(0%);
-        border-color: var(--emerald) !important;
-    }
+        .team-card:hover {
+            transform: translateY(-10px);
+            filter: grayscale(0%);
+            border-color: var(--emerald) !important;
+        }
 
     .quote-mark {
         font-size: 5rem;
@@ -43,8 +47,17 @@
     }
 
     .article-content p {
-        color: #cbd5e1; /* Higher contrast than text-secondary */
+        color: var(--mid-tone-2);
         margin-bottom: 1.5rem;
+    }
+
+    /* Bio Text Styling */
+    .curator-bio {
+        font-size: 0.8rem;
+        color: var(--mid-tone-2);
+        margin-top: 8px;
+        line-height: 1.4;
+        font-weight: 300;
     }
 </style>
 
@@ -52,11 +65,11 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <span class="text-emerald text-uppercase tracking-widest small d-block mb-3" style="color: var(--emerald);">Manifesto</span>
-                <h1 class="about-hero-text serif mb-4">Crafting digital <br /><span class="fst-italic text-emerald" style="color: var(--emerald);">longevity.</span></h1>
+                <span class="text-emerald text-uppercase tracking-widest small d-block mb-3">Manifesto</span>
+                <h1 class="about-hero-text serif mb-4">Crafting digital <br /><span class="fst-italic text-emerald">longevity.</span></h1>
             </div>
             <div class="col-lg-5">
-                <p class="lead fw-light text-white-50">
+                <p class="lead fw-light" style="color: var(--mid-tone-2);">
                     In an era of disposable content and rapid-fire updates, Emerald Insights stands as a sanctuary for deep thought and architectural excellence.
                 </p>
             </div>
@@ -64,23 +77,23 @@
     </div>
 </section>
 
-<section class="py-5 my-5" style="background: rgba(11, 110, 79, 0.05);">
+<section class="py-5 my-5" style="background: rgba(255, 196, 170, 0.2);">
     <div class="container py-5">
         <div class="row g-4 text-center">
             <div class="col-md-4 stat-box">
-                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">01.</h2>
+                <h2 class="serif text-emerald display-5">01.</h2>
                 <h5 class="text-uppercase tracking-widest small mt-3">Minimalism</h5>
-                <p class="small px-4 mt-2 text-white-50">Reducing complexity to reveal the core essence of digital design.</p>
+                <p class="small px-4 mt-2" style="color: var(--mid-tone-2);">Reducing complexity to reveal the core essence of digital design.</p>
             </div>
             <div class="col-md-4 stat-box">
-                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">02.</h2>
+                <h2 class="serif text-emerald display-5">02.</h2>
                 <h5 class="text-uppercase tracking-widest small mt-3">Integrity</h5>
-                <p class="small px-4 mt-2 text-white-50">Upholding the highest standards of code and editorial ethics.</p>
+                <p class="small px-4 mt-2" style="color: var(--mid-tone-2);">Upholding the highest standards of code and editorial ethics.</p>
             </div>
             <div class="col-md-4 stat-box">
-                <h2 class="serif text-emerald display-5" style="color: var(--emerald);">03.</h2>
+                <h2 class="serif text-emerald display-5">03.</h2>
                 <h5 class="text-uppercase tracking-widest small mt-3">Curation</h5>
-                <p class="small px-4 mt-2 text-white-50">Selecting only the most impactful insights for our circle.</p>
+                <p class="small px-4 mt-2" style="color: var(--mid-tone-2);">Selecting only the most impactful insights for our circle.</p>
             </div>
         </div>
     </div>
@@ -92,7 +105,7 @@
             <div class="col-lg-9">
                 <div class="mb-5">
                     <span class="quote-mark">“</span>
-                    <h2 class="serif display-6 px-4 d-inline text-white">We believe the web should be as enduring and beautiful as a printed book.</h2>
+                    <h2 class="serif display-6 px-4 d-inline" style="color: var(--primary-dark);">We believe the web should be as enduring and beautiful as a printed book.</h2>
                     <span class="quote-mark">”</span>
                 </div>
                 <div class="article-content fw-light mx-auto" style="max-width: 700px;">
@@ -106,39 +119,43 @@
 
 <section class="py-5 mb-5">
     <div class="container">
-        <h3 class="serif mb-5 text-center text-white">The Curators</h3>
+        <h3 class="serif mb-5 text-center" style="color: var(--primary-dark);">The Curators</h3>
         <div class="row g-4">
-            
+
             <div class="col-6 col-lg-3 text-center">
-                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(80, 200, 120, 0.3);">
-                    <img src="~/images/SHREYASH!.jpeg" alt="Shreyash Sundechamutha" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(118, 70, 56, 0.35);">
+                    <img src="~/images/SHREYASH!.jpeg" alt="Shreyash Sundechamutha" class="img-fluid h-100 w-100" style="object-fit: cover;" onerror="this.onerror=null; this.src='@Url.Content("~/images/placeholder.svg")';" />
                 </div>
-                <h6 class="mb-0 text-white fw-bold">Shreyash Sundechamutha</h6>
-                <span class="small text-emerald text-uppercase tracking-tighter" style="color: var(--emerald); font-size: 0.65rem;">Founder & Director</span>
+                <h6 class="mb-0 fw-bold" style="color: var(--primary-dark);">Shreyash Sundechamutha</h6>
+                <span class="small text-emerald text-uppercase tracking-tighter" style="font-size: 0.65rem;">Founder & Director</span>
+                <p class="curator-bio">Focuses on strategic vision and ensuring digital longevity across all architectural designs.</p>
             </div>
 
             <div class="col-6 col-lg-3 text-center">
-                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                    <img src="~/images/prem.jpeg" alt="Prem Gaikwad" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(118, 70, 56, 0.25);">
+                    <img src="~/images/prem.jpeg" alt="Prem Gaikwad" class="img-fluid h-100 w-100" style="object-fit: cover;" onerror="this.onerror=null; this.src='@Url.Content("~/images/placeholder.svg")';" />
                 </div>
-                <h6 class="mb-0 text-white">Prem Gaikwad</h6>
-                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Editor in Chief</span>
+                <h6 class="mb-0" style="color: var(--primary-dark);">Prem Gaikwad</h6>
+                <span class="small text-uppercase tracking-tighter" style="font-size: 0.65rem; color: var(--mid-tone-2);">Editor in Chief</span>
+                <p class="curator-bio">Curates deep-thought tech journalism with a focus on editorial ethics and integrity.</p>
             </div>
 
             <div class="col-6 col-lg-3 text-center">
-                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                    <img src="~/images/Pratik.jpeg" alt="Pratik Khetre" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(64, 26, 15, 0.25);">
+                    <img src="~/images/WhatsApp Image 2026-03-15 at 11.25.19 AM.jpeg" alt="Pratik Khetre" class="img-fluid h-100 w-100" style="object-fit: cover;" onerror="this.onerror=null; this.src='@Url.Content("~/images/placeholder.svg")';" />
                 </div>
-                <h6 class="mb-0 text-white">Pratik Khetre</h6>
-                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Design Lead</span>
+                <h6 class="mb-0" style="color: var(--primary-dark);">Pratik Khetre</h6>
+                <span class="small text-uppercase tracking-tighter" style="font-size: 0.65rem; color: var(--mid-tone-2);">Design Lead</span>
+                <p class="curator-bio">Specializes in minimalist UI/UX, blending aesthetic beauty with functional perfection.</p>
             </div>
 
             <div class="col-6 col-lg-3 text-center">
-                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                    <img src="~/images/Aditya.jpeg" alt="Aditya Govekar" class="img-fluid h-100 w-100" style="object-fit: cover;" />
+                <div class="team-card mb-3" style="aspect-ratio: 1/1; overflow: hidden; border: 1px solid rgba(64, 26, 15, 0.25);">
+                    <img src="~/images/Picsart_24-10-22_15-16-48-388 (4).jpg.jpeg" alt="Aditya Govekar" class="img-fluid h-100 w-100" style="object-fit: cover;object-position: top center;" onerror="this.onerror=null; this.src='@Url.Content("~/images/placeholder.svg")';" />
                 </div>
-                <h6 class="mb-0 text-white">Aditya Govekar</h6>
-                <span class="small text-white-50 text-uppercase tracking-tighter" style="font-size: 0.65rem;">Chief Architect</span>
+                <h6 class="mb-0" style="color: var(--primary-dark);">Aditya Govekar</h6>
+                <span class="small text-uppercase tracking-tighter" style="font-size: 0.65rem; color: var(--mid-tone-2);">Chief Architect</span>
+                <p class="curator-bio">Architects high-performance, scalable systems and robust full-stack web solutions.</p>
             </div>
 
         </div>

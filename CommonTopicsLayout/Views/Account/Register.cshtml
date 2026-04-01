@@ -1,4 +1,4 @@
-﻿@model CommonTopicsLayout.Models.RegisterViewModel
+@model CommonTopicsLayout.Models.RegisterViewModel
 @{
     Layout = "_MyLayout";
     ViewData["Title"] = "Join the Circle";
@@ -8,9 +8,9 @@
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
             <div class="text-center mb-5">
-                <span class="text-emerald text-uppercase tracking-widest small d-block mb-2" style="color: var(--emerald);">Application</span>
-                <h1 class="serif display-5" style="color: var(--emerald); text-shadow: 0 0 15px rgba(80, 200, 120, 0.2);">Create Account</h1>
-                <p class="text-white-50 small mt-3">Join our collective of digital craftsmen.</p>
+                <span class="text-emerald text-uppercase tracking-widest small d-block mb-2">Application</span>
+                <h1 class="serif display-5" style="color: var(--emerald); text-shadow: 0 0 15px rgba(118, 70, 56, 0.2);">Create Account</h1>
+                <p class="small mt-3" style="color: var(--mid-tone-2);">Join our collective of digital craftsmen.</p>
             </div>
 
             <form asp-action="Register" method="post">
@@ -18,41 +18,41 @@
 
                 <div class="mb-4">
                     <label class="small text-uppercase tracking-widest opacity-50 mb-2">Full Name</label>
-                    <input asp-for="FullName" class="form-control bg-transparent border-0 border-bottom text-white rounded-0 px-0 pb-2 shadow-none" 
-                           style="border-color: rgba(255,255,255,0.2) !important;" autocomplete="off" />
+                    <input asp-for="FullName" class="form-control bg-transparent border-0 border-bottom rounded-0 px-0 pb-2 shadow-none" 
+                           style="border-color: rgba(64, 26, 15, 0.25) !important; color: var(--primary-dark);" autocomplete="off" />
                     <span asp-validation-for="FullName" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-4">
                     <label class="small text-uppercase tracking-widest opacity-50 mb-2">Email Address</label>
-                    <input asp-for="Email" class="form-control bg-transparent border-0 border-bottom text-white rounded-0 px-0 pb-2 shadow-none" 
-                           style="border-color: rgba(255,255,255,0.2) !important;" autocomplete="off" />
+                    <input asp-for="Email" class="form-control bg-transparent border-0 border-bottom rounded-0 px-0 pb-2 shadow-none" 
+                           style="border-color: rgba(64, 26, 15, 0.25) !important; color: var(--primary-dark);" autocomplete="off" />
                     <span asp-validation-for="Email" class="text-danger small"></span>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <label class="small text-uppercase tracking-widest opacity-50 mb-2">Password</label>
-                        <input asp-for="Password" type="password" class="form-control bg-transparent border-0 border-bottom text-white rounded-0 px-0 pb-2 shadow-none" 
-                               style="border-color: rgba(255,255,255,0.2) !important;" />
+                        <input asp-for="Password" type="password" class="form-control bg-transparent border-0 border-bottom rounded-0 px-0 pb-2 shadow-none" 
+                               style="border-color: rgba(64, 26, 15, 0.25) !important; color: var(--primary-dark);" />
                         <span asp-validation-for="Password" class="text-danger small"></span>
                     </div>
                     <div class="col-md-6 mb-4">
                         <label class="small text-uppercase tracking-widest opacity-50 mb-2">Confirm</label>
-                        <input asp-for="ConfirmPassword" type="password" class="form-control bg-transparent border-0 border-bottom text-white rounded-0 px-0 pb-2 shadow-none" 
-                               style="border-color: rgba(255,255,255,0.2) !important;" />
+                        <input asp-for="ConfirmPassword" type="password" class="form-control bg-transparent border-0 border-bottom rounded-0 px-0 pb-2 shadow-none" 
+                               style="border-color: rgba(64, 26, 15, 0.25) !important; color: var(--primary-dark);" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
                     </div>
                 </div>
 
                 <button type="submit" class="btn w-100 py-3 mt-3 fw-bold text-uppercase tracking-widest" 
-                        style="background-color: var(--emerald); color: var(--deep-green); border: none; transition: 0.3s;">
+                        style="background-color: var(--emerald); color: #fffaf8; border: none; transition: 0.3s;">
                     Create Account
                 </button>
             </form>
 
             <div class="mt-4 text-center">
-                <p class="small" style="color: rgba(255,255,255,0.6);">
+                <p class="small" style="color: var(--mid-tone-2);">
                     Already a member? 
                     <a asp-action="Login" class="fw-bold text-decoration-none" style="color: var(--emerald); transition: 0.3s;">Sign in here</a>
                 </p>

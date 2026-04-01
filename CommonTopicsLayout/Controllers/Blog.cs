@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CommonTopicsLayout.Models;
@@ -83,6 +83,56 @@ namespace CommonTopicsLayout.Controllers
             }
             return RedirectToAction("Profile", new { username = User.Identity.Name });
         }
+
+        public IActionResult Error() => View("~/Views/Shared/Error.cshtml");
+
+        [Authorize]
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Article article)
+        {
+            if (ModelState.IsValid)
+            {
+                article.AuthorName = User.Identity?.Name;
+                article.PublishedDate = DateTime.Now;
+                _context.Articles.Add(article);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Home");
+            }
+            return View(article);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Details(int id)
+        {
+            var article = await _context.Articles.FindAsync(id);
+            if (article == null) return NotFound();
+            return View(article);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Articles()
+        {
+            var articles = await _context.Articles.OrderByDescending(a => a.PublishedDate).ToListAsync();
+            return View(articles);
+        }
+
+        [HttpGet]
+        public IActionResult Subscribe() => View(new SubscribeModel());
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Subscribe(SubscribeModel model)
+        {
+            if (ModelState.IsValid)
+                return RedirectToAction("SubscribeSuccess");
+            return View(model);
+        }
+
+        public IActionResult SubscribeSuccess() => View();
 
         public IActionResult About() => View();
         public IActionResult Contact() => View();

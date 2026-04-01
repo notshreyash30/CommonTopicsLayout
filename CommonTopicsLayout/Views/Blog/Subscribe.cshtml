@@ -1,4 +1,4 @@
-﻿@model CommonTopicsLayout.Models.SubscribeModel 
+@model CommonTopicsLayout.Models.SubscribeModel 
 @* ^ Use your actual project namespace here ^ *@
 
 @{
@@ -9,7 +9,7 @@
 <form asp-action="Subscribe" method="post">
     <div class="mb-4">
         @* This line fails if @model is missing or if you use ViewBag here *@
-        <input asp-for="Email" class="form-control bg-transparent text-white" />
+        <input asp-for="Email" class="form-control bg-transparent" style="color: var(--primary-dark); border-color: rgba(64, 26, 15, 0.25);" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-subscribe">Subscribe</button>

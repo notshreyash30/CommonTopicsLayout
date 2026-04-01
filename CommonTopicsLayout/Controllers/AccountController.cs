@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -127,6 +127,26 @@ namespace CommonTopicsLayout.Controllers
             else
             {
                 ViewBag.Error = "Email not found.";
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword(string token) => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(string token, string newPassword)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.ResetToken == token && u.ResetTokenExpiry > DateTime.Now);
+            if (user != null && !string.IsNullOrEmpty(newPassword))
+            {
+                user.Password = newPassword;
+                user.ResetToken = null;
+                user.ResetTokenExpiry = null;
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Login");
             }
             return View();
         }

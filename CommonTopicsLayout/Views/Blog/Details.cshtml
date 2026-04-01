@@ -1,4 +1,4 @@
-﻿@model CommonTopicsLayout.Models.Article
+@model CommonTopicsLayout.Models.Article
 @{
     ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -19,7 +19,7 @@
     .post-content {
         font-size: 1.2rem;
         line-height: 1.9;
-        color: rgba(255, 255, 255, 0.85);
+        color: var(--primary-dark);
         /* This keeps the "Enters" and "Paragraphs" you typed in the Create form */
         white-space: pre-line;
     }
@@ -27,12 +27,12 @@
     .meta-divider {
         width: 50px;
         height: 2px;
-        background-color: #50c878;
+        background-color: var(--emerald);
         margin: 2rem 0;
     }
 
     .back-btn {
-        color: #50c878;
+        color: var(--emerald);
         text-decoration: none;
         font-weight: 600;
         font-size: 0.9rem;
@@ -40,7 +40,7 @@
     }
 
         .back-btn:hover {
-            color: white;
+            color: var(--primary-dark);
             padding-left: 5px;
         }
 </style>
@@ -58,15 +58,15 @@
             <span class="text-emerald text-uppercase tracking-widest small d-block mb-3" style="letter-spacing: 2px;">
                 @Model.Category
             </span>
-            <h1 class="display-3 serif text-white mb-4">@Model.Title</h1>
+            <h1 class="display-3 serif mb-4" style="color: var(--primary-dark);">@Model.Title</h1>
 
             <div class="d-flex align-items-center mb-2">
-                <div class="bg-emerald text-dark fw-bold rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px;">
+                <div class="bg-emerald text-white fw-bold rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 45px; height: 45px; background-color: var(--mid-tone-3);">
                     @Model.AuthorName[0]
                 </div>
                 <div>
-                    <p class="mb-0 text-white fw-bold">@Model.AuthorName</p>
-                    <p class="mb-0 text-white-50 small">@Model.PublishedDate.ToString("MMMM dd, yyyy")</p>
+                    <p class="mb-0 fw-bold" style="color: var(--primary-dark);">@Model.AuthorName</p>
+                    <p class="mb-0 small" style="color: var(--mid-tone-2);">@Model.PublishedDate?.ToString("MMMM dd, yyyy")</p>
                 </div>
             </div>
 

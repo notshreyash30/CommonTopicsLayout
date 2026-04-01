@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonTopicsLayout.Models.Article>
+@model IEnumerable<CommonTopicsLayout.Models.Article>
 @{
     string name = ViewBag.Username;
     string bio = ViewBag.Bio;
@@ -22,10 +22,10 @@
                     }
                 </div>
 
-                <h2 class="serif text-white h3 mb-1">@name</h2>
+                <h2 class="serif h3 mb-1" style="color: var(--primary-dark);">@name</h2>
                 <span class="text-emerald x-small fw-bold tracking-widest d-block mb-4">Member</span>
 
-                <p class="text-white-50 small mb-4 lh-lg italic">"@bio"</p>
+                <p class="small mb-4 lh-lg italic" style="color: var(--mid-tone-2);">"@bio"</p>
 
                 @if (name == User.Identity.Name)
                 {
@@ -40,7 +40,7 @@
             {
                 <div class="profile-post-card mb-3 p-4">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="serif text-white h5 mb-0">@post.Title</h4>
+                        <h4 class="serif h5 mb-0" style="color: var(--primary-dark);">@post.Title</h4>
                         <a asp-action="Details" asp-route-id="@post.Id" class="text-emerald text-decoration-none small fw-bold">Read &rarr;</a>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
     .profile-avatar-lg {
         width: 100px;
         height: 100px;
-        background: var(--emerald);
-        color: #0d1b13;
+        background: var(--mid-tone-3);
+        color: #fffaf8;
         font-size: 3rem;
         font-weight: 800;
         display: flex;
@@ -64,14 +64,14 @@
     }
 
     .profile-sidebar {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 196, 170, 0.12);
+        border: 1px solid rgba(118, 70, 56, 0.25);
         border-top: 3px solid var(--emerald);
     }
 
     .profile-post-card {
-        background: rgba(255, 255, 255, 0.01);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 196, 170, 0.08);
+        border: 1px solid rgba(118, 70, 56, 0.2);
         transition: 0.3s;
     }
 

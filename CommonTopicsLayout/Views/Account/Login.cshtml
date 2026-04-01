@@ -1,4 +1,4 @@
-﻿@model CommonTopicsLayout.Models.LoginViewModel
+@model CommonTopicsLayout.Models.LoginViewModel
 @{
     ViewData["Title"] = "Access Journal";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -9,29 +9,19 @@
         max-width: 450px;
         margin: 80px auto;
         padding: 40px;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(80, 200, 120, 0.1);
-    }
-    .login-input {
-        background: transparent !important;
-        border: none !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-        border-radius: 0 !important;
-        color: white !important;
-        padding: 12px 0 !important;
-    }
-    .login-input:focus {
-        border-bottom-color: var(--emerald) !important;
-        box-shadow: none !important;
+        background: #fffaf8;
+        border: 1px solid rgba(118, 70, 56, 0.25);
+        box-shadow: 0 4px 6px rgba(118, 70, 56, 0.1);
     }
     .btn-emerald-login {
         background-color: var(--emerald);
-        color: var(--deep-green);
+        color: #fffaf8;
         border: none;
         transition: 0.4s;
     }
     .btn-emerald-login:hover {
-        background-color: #ffffff;
+        background-color: var(--mid-tone-2);
+        color: #fffaf8;
         transform: translateY(-3px);
     }
 </style>
@@ -39,7 +29,7 @@
 <div class="container">
     <div class="login-container">
         <div class="text-center mb-5">
-            <span class="text-emerald text-uppercase tracking-widest small d-block mb-2" style="color: var(--emerald);">Authentication</span>
+            <span class="text-emerald text-uppercase tracking-widest small d-block mb-2">Authentication</span>
             <h2 class="serif h1" style="color: var(--emerald);">Welcome Back.</h2>
         </div>
 
@@ -47,19 +37,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
 
             <div class="mb-4">
-                <label class="small text-uppercase tracking-widest text-white-50">Email Address</label>
-                <input asp-for="Email" class="form-control login-input" placeholder="name@domain.com" />
+                <label class="small text-uppercase tracking-widest" style="color: var(--mid-tone-2);">Email Address</label>
+                <input asp-for="Email" class="form-control login-input" placeholder="Email" />
             </div>
 
             <div class="mb-4">
-                <label class="small text-uppercase tracking-widest text-white-50">Password</label>
+                <label class="small text-uppercase tracking-widest" style="color: var(--mid-tone-2);">Password</label>
                 <input asp-for="Password" type="password" class="form-control login-input" placeholder="••••••••" />
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div class="form-check">
                     <input asp-for="RememberMe" class="form-check-input" type="checkbox" style="border-color: var(--emerald);">
-                    <label class="form-check-label small text-white-50">Keep me signed in</label>
+                    <label class="form-check-label small" style="color: var(--mid-tone-2);">Keep me signed in</label>
                 </div>
                 <a asp-action="ForgotPassword" class="small fw-bold text-decoration-none" style="color: var(--emerald);">Forgot?</a>
             </div>

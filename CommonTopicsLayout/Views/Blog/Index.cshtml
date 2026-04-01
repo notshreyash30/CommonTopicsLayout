@@ -1,26 +1,27 @@
-﻿@{
+@{
     ViewData["Title"] = "Emerald Insights - Publish Your Passions";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
 <section class="py-5 mt-5">
     <div class="container text-center">
-        <h1 class="display-1 serif text-white mb-4">
+        <h1 class="display-1 serif mb-4" style="color: var(--primary-dark);">
             Publish your passions, <br/> 
             <span class="fst-italic" style="color:var(--emerald)">your way.</span>
         </h1>
-        <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 650px;">
+        <p class="lead mb-5 mx-auto" style="max-width: 650px; color: var(--mid-tone-2);">
             The ultimate canvas for digital craftsmen. Create a unique and beautiful blog today and join the circle of elite curators.
         </p>
         
         <div class="d-flex justify-content-center gap-3">
             <a asp-controller="Account" asp-action="Register" 
                class="btn py-3 px-5 fw-bold text-uppercase tracking-widest" 
-               style="background-color: var(--emerald); color: var(--deep-green); border: none;">
+               style="background-color: var(--emerald); color: #FFFFFF; border: none;">
                 Get Started
             </a>
             <a asp-controller="Account" asp-action="Login" 
-               class="btn btn-outline-light py-3 px-5 fw-bold text-uppercase tracking-widest rounded-0">
+               class="btn py-3 px-5 fw-bold text-uppercase tracking-widest rounded-0" 
+               style="border: 1px solid var(--emerald); color: var(--emerald); background: transparent;">
                 Sign In
             </a>
         </div>
@@ -28,7 +29,7 @@
 </section>
 
 <div class="container mt-5 pt-5">
-    <div class="row text-center text-white-50">
+    <div class="row text-center" style="color: var(--mid-tone-2);">
         <div class="col-md-4 mb-4">
             <h5 class="text-emerald serif">Unique Design</h5>
             <p class="small">Tailored layouts for the modern writer.</p>

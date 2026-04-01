@@ -1,4 +1,4 @@
-﻿@model CommonTopicsLayout.Models.ContactMessage
+@model CommonTopicsLayout.Models.ContactMessage
 @{
     ViewData["Title"] = "Contact Us";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -8,16 +8,16 @@
     .contact-input {
         background: transparent !important;
         border: none !important;
-        border-bottom: 1px solid rgba(80, 200, 120, 0.3) !important;
+        border-bottom: 1px solid rgba(64, 26, 15, 0.3) !important;
         border-radius: 0 !important;
-        color: #f0fdf4 !important;
+        color: var(--primary-dark) !important;
         padding: 1.2rem 0.5rem !important;
         transition: all 0.4s ease !important;
     }
 
         .contact-input:focus {
             border-bottom-color: var(--emerald) !important;
-            background: rgba(80, 200, 120, 0.02) !important;
+            background: rgba(255, 196, 170, 0.15) !important;
             box-shadow: none !important;
         }
 
@@ -31,7 +31,7 @@
     }
 
     .contact-link {
-        color: #f0fdf4;
+        color: var(--primary-dark);
         text-decoration: none;
         transition: 0.3s;
     }
@@ -41,14 +41,14 @@
         }
 
     .contact-sidebar {
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 1px solid rgba(118, 70, 56, 0.25);
     }
     @@media (max-width: 991px) {
         .contact-sidebar
 
     {
         border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(118, 70, 56, 0.25);
         padding-top: 3rem;
         margin-top: 3rem;
     }
@@ -59,7 +59,7 @@
 <div class="container py-5 mt-5">
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success bg-emerald text-dark border-0 rounded-0 mb-5 fade show">
+        <div class="alert alert-success bg-emerald border-0 rounded-0 mb-5 fade show" style="color: #fffaf8;">
             <strong>Success:</strong> @TempData["SuccessMessage"]
         </div>
     }
@@ -88,7 +88,7 @@
                         <textarea name="message" class="form-control contact-input" rows="4" placeholder="Your inquiry..." required></textarea>
                     </div>
                     <div class="col-12 mt-5">
-                        <button type="submit" class="btn px-5 py-3 w-100 fw-bold" style="background: var(--emerald); color: var(--deep-green); border:none;">
+                        <button type="submit" class="btn px-5 py-3 w-100 fw-bold" style="background: var(--emerald); color: #fffaf8; border:none;">
                             Submit Inquiry
                         </button>
                     </div>
@@ -100,10 +100,10 @@
             <h4 class="serif mb-4">Direct Lines</h4>
             <div class="mb-3">
                 <span class="contact-label d-block">General Inquiries</span>
-                <a href="mailto:itsshreyash19@gmail.com" class="contact-link">itsshreyash19@gmail.com</a>
+                <a href="mailto:itsshreyash19@gmail.com" class="contact-link">shreyashsundechamutha@gmail.com</a>
             </div>
-            <div class="p-4 mt-5" style="background: rgba(80, 200, 120, 0.05); border: 1px solid rgba(80, 200, 120, 0.2);">
-                <p class="small mb-0 italic" style="color: #cbd5e1;">
+            <div class="p-4 mt-5" style="background: rgba(255, 196, 170, 0.25); border: 1px solid rgba(118, 70, 56, 0.3);">
+                <p class="small mb-0 italic" style="color: var(--mid-tone-2);">
                     <strong class="text-emerald d-block mb-1 uppercase small">Response Protocol</strong>
                     We respect the pace of high-end craftsmanship. Please allow 24–48 hours for a curated response.
                 </p>

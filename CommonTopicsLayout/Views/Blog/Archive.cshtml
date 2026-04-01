@@ -1,10 +1,10 @@
-﻿@model IEnumerable<CommonTopicsLayout.Models.Article>
+@model IEnumerable<CommonTopicsLayout.Models.Article>
 @{
     ViewData["Title"] = "Archive";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 
     // 1. Group the articles by Year from your actual data
-    var yearGroups = Model.GroupBy(a => a.PublishedDate.Year)
+    var yearGroups = Model.GroupBy(a => a.PublishedDate?.Year)
                           .OrderByDescending(g => g.Key);
 
     // 2. Get the list of topics and how many posts are in each
@@ -16,8 +16,8 @@
 <style>
     /* Simple variables for colors */
     :root {
-        --emerald: #50c878;
-        --soft-white: rgba(255, 255, 255, 0.6);
+        --emerald: #764638;
+        --soft-white: rgba(64, 26, 15, 0.6);
     }
 
     .serif {
@@ -27,14 +27,14 @@
     /* Makes the list items look smooth when you hover */
     .archive-item {
         transition: all 0.3s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-bottom: 1px solid rgba(64, 26, 15, 0.15) !important;
         text-decoration: none;
         display: block;
         padding: 25px 0;
     }
 
         .archive-item:hover {
-            background-color: rgba(80, 200, 120, 0.05) !important;
+            background-color: rgba(255, 196, 170, 0.2) !important;
             padding-left: 15px !important;
         }
 
@@ -97,13 +97,13 @@
                     Find a Post
                 </h6>
                 <form method="get" asp-action="Archive">
-                    <input type="text" name="search" class="form-control bg-transparent border-secondary text-white rounded-0 shadow-none" placeholder="Type here...">
+                    <input type="text" name="search" class="form-control bg-transparent border-secondary rounded-0 shadow-none" style="color: var(--primary-dark); border-color: rgba(64, 26, 15, 0.25);" placeholder="Type here...">
                 </form>
             </div>
         </div>
 
         <div class="col-lg-9 ps-lg-5">
-            <h1 class="display-3 serif text-white mb-5">Archive.</h1>
+            <h1 class="display-3 serif mb-5" style="color: var(--primary-dark);">Archive.</h1>
 
             @if (!Model.Any())
             {
@@ -116,20 +116,20 @@
             {
                 <div class="position-relative mb-5">
                     <div class="bg-year serif">@yearSection.Key</div>
-                    <h2 class="serif h4 text-white-50 mb-4 border-bottom border-secondary pb-2">@yearSection.Key</h2>
+                    <h2 class="serif h4 mb-4 border-bottom pb-2" style="color: var(--mid-tone-2); border-color: rgba(64, 26, 15, 0.2);">@yearSection.Key</h2>
 
                     <div class="list-group list-group-flush bg-transparent">
                         @foreach (var article in yearSection.OrderByDescending(a => a.PublishedDate))
                         {
-                            <a asp-action="Details" asp-route-id="@article.Id" class="list-group-item archive-item bg-transparent text-white d-flex justify-content-between align-items-center px-0">
+                            <a asp-action="Details" asp-route-id="@article.Id" class="list-group-item archive-item bg-transparent d-flex justify-content-between align-items-center px-0" style="color: var(--primary-dark);">
                                 <div>
                                     <span class="text-emerald fw-bold small text-uppercase" style="letter-spacing: 1px;">
-                                        @article.PublishedDate.ToString("MMMM dd")
+                                        @article.PublishedDate?.ToString("MMMM dd")
                                     </span>
                                     <h3 class="h4 serif mt-1 mb-1">@article.Title</h3>
                                     <span class="text-muted small">Topic: @article.Category — Posted by @article.AuthorName</span>
                                 </div>
-                                <i class="bi bi-arrow-right fs-4 arrow-icon text-white-50"></i>
+                                <i class="bi bi-arrow-right fs-4 arrow-icon" style="color: var(--mid-tone-2);"></i>
                             </a>
                         }
                     </div>
